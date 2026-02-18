@@ -1,0 +1,327 @@
+[gd_scene format=3 uid="uid://cpr6xpibipu3b"]
+
+[ext_resource type="Script" uid="uid://d1uswbvphva3w" path="res://code/GameController.cs" id="1_w5aja"]
+[ext_resource type="Script" uid="uid://co1t742s66xd3" path="res://code/CardConfig.cs" id="2_kk2rg"]
+[ext_resource type="Script" uid="uid://du6oohssokhmt" path="res://code/BoardController.cs" id="2_mw25s"]
+[ext_resource type="PackedScene" uid="uid://dvthadblh6i8r" path="res://scenes/card_visuals.tscn" id="2_tcjrq"]
+[ext_resource type="Texture2D" uid="uid://scx25bwjpvbm" path="res://sprites/Playing Cards/card-spades-2.png" id="3_b5spy"]
+[ext_resource type="Texture2D" uid="uid://drlyxtvlwgo75" path="res://sprites/parallax-forest-back-trees.png" id="3_ldkr4"]
+[ext_resource type="Theme" uid="uid://6qqdetk8k1fy" path="res://themes/game_theme.tres" id="3_tcjrq"]
+[ext_resource type="Texture2D" uid="uid://byqxuhuj63dyq" path="res://sprites/Playing Cards/card-clubs-4.png" id="4_utbpp"]
+[ext_resource type="Texture2D" uid="uid://dobflkul0iyv3" path="res://sprites/Playing Cards/card-hearts-7.png" id="5_mw25s"]
+[ext_resource type="Theme" uid="uid://c2ibtscs2teuj" path="res://themes/controls_theme.tres" id="5_tqxxy"]
+[ext_resource type="Texture2D" uid="uid://bhh2k1xg1wmeo" path="res://sprites/Complete_UI_Essential_Pack_Free/01_Flat_Theme/Sprites/UI_Flat_Banner01a.png" id="6_5ay1a"]
+[ext_resource type="Texture2D" uid="uid://e0evk35vr2et" path="res://sprites/Playing Cards/card-clubs-2.png" id="6_tcjrq"]
+[ext_resource type="Texture2D" uid="uid://bao1lwjr4qx3c" path="res://sprites/Playing Cards/card-diamonds-9.png" id="7_rvs2r"]
+[ext_resource type="Texture2D" uid="uid://c28jhrr5fjidd" path="res://sprites/spanish_deck/1.PNG" id="8_b5spy"]
+[ext_resource type="Script" uid="uid://cf3r8ivb62yw4" path="res://code/DifficultyController.cs" id="12_rvs2r"]
+[ext_resource type="AudioStream" uid="uid://cbxl8kxgbmjto" path="res://audio/looping_clock.ogg" id="16_liy57"]
+[ext_resource type="AudioStream" uid="uid://d05y77g2muknx" path="res://audio/cropped_flip.ogg" id="17_mwyo0"]
+
+[node name="GameScene" type="Node2D" unique_id=1185805943 node_paths=PackedStringArray("_cardConfigs", "_targetCardConfig", "_boardController", "_configurationContainer", "_startButton", "_difficultySlider", "_difficultyLabel", "_moveLabel", "_resultsLabel", "_resultsRoot")]
+script = ExtResource("1_w5aja")
+_card = ExtResource("2_tcjrq")
+_cardConfigs = [NodePath("CardDefs/2_spades"), NodePath("CardDefs/4_clubs"), NodePath("CardDefs/7_hearts"), NodePath("CardDefs/2_clubs"), NodePath("CardDefs/9_diamonds")]
+_targetCardConfig = NodePath("CardDefs/target")
+_boardController = NodePath("CanvasLayer/Control")
+_configurationContainer = NodePath("CanvasLayer/Control/VBoxContainer")
+_startButton = NodePath("CanvasLayer/Control/VBoxContainer/StartButton")
+_difficultySlider = NodePath("CanvasLayer/Control/VBoxContainer/VBoxContainer/HBoxContainer/HSlider")
+_difficultyLabel = NodePath("CanvasLayer/Control/VBoxContainer/VBoxContainer/HBoxContainer/Label")
+_moveLabel = NodePath("CanvasLayer/Control/HBoxContainer/Label")
+_resultsLabel = NodePath("CanvasLayer/Control/ResultsBanner/Label")
+_resultsRoot = NodePath("CanvasLayer/Control/ResultsBanner")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1266424224]
+anchor_mode = 0
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=220671576]
+follow_viewport_enabled = true
+
+[node name="Control" type="Control" parent="CanvasLayer" unique_id=1765437427 node_paths=PackedStringArray("_cardLocs", "_cardsRoot", "_discardPile", "_difficultyController", "_cardFlipAudio")]
+custom_minimum_size = Vector2(1920, 1080)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_mw25s")
+_cardLocs = [NodePath("PanelContainer_bg/MarginContainer/GridContainer/MarginContainer/Control"), NodePath("PanelContainer_bg/MarginContainer/GridContainer/MarginContainer2/Control"), NodePath("PanelContainer_bg/MarginContainer/GridContainer/MarginContainer3/Control"), NodePath("PanelContainer_bg/MarginContainer/GridContainer/MarginContainer4/Control"), NodePath("PanelContainer_bg/MarginContainer/GridContainer/MarginContainer5/Control"), NodePath("PanelContainer_bg/MarginContainer/GridContainer/MarginContainer6/Control"), NodePath("PanelContainer_bg/MarginContainer/GridContainer/MarginContainer7/Control"), NodePath("PanelContainer_bg/MarginContainer/GridContainer/MarginContainer8/Control"), NodePath("PanelContainer_bg/MarginContainer/GridContainer/MarginContainer9/Control")]
+_cardsRoot = NodePath("CardsRoot")
+_discardPile = NodePath("DiscardPileLocation")
+_difficultyController = NodePath("../../Difficulty")
+_cardFlipAudio = NodePath("../../Audio/Cardflip")
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Control" unique_id=1117782514]
+layout_mode = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
+texture = ExtResource("3_ldkr4")
+
+[node name="PanelContainer_bg" type="PanelContainer" parent="CanvasLayer/Control" unique_id=1531393305]
+layout_mode = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
+theme = ExtResource("3_tcjrq")
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Control/PanelContainer_bg" unique_id=898318597]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 50
+
+[node name="GridContainer" type="GridContainer" parent="CanvasLayer/Control/PanelContainer_bg/MarginContainer" unique_id=1289388956]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+columns = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Control/PanelContainer_bg/MarginContainer/GridContainer" unique_id=1858993424]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="Control" type="Control" parent="CanvasLayer/Control/PanelContainer_bg/MarginContainer/GridContainer/MarginContainer" unique_id=1183299581]
+custom_minimum_size = Vector2(150, 225)
+layout_mode = 2
+
+[node name="MarginContainer2" type="MarginContainer" parent="CanvasLayer/Control/PanelContainer_bg/MarginContainer/GridContainer" unique_id=1514808732]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="Control" type="Control" parent="CanvasLayer/Control/PanelContainer_bg/MarginContainer/GridContainer/MarginContainer2" unique_id=1850456361]
+custom_minimum_size = Vector2(150, 225)
+layout_mode = 2
+
+[node name="MarginContainer3" type="MarginContainer" parent="CanvasLayer/Control/PanelContainer_bg/MarginContainer/GridContainer" unique_id=220089074]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="Control" type="Control" parent="CanvasLayer/Control/PanelContainer_bg/MarginContainer/GridContainer/MarginContainer3" unique_id=1081498393]
+custom_minimum_size = Vector2(150, 225)
+layout_mode = 2
+
+[node name="MarginContainer4" type="MarginContainer" parent="CanvasLayer/Control/PanelContainer_bg/MarginContainer/GridContainer" unique_id=1483051963]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="Control" type="Control" parent="CanvasLayer/Control/PanelContainer_bg/MarginContainer/GridContainer/MarginContainer4" unique_id=2050237702]
+custom_minimum_size = Vector2(150, 225)
+layout_mode = 2
+
+[node name="MarginContainer5" type="MarginContainer" parent="CanvasLayer/Control/PanelContainer_bg/MarginContainer/GridContainer" unique_id=1424990155]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="Control" type="Control" parent="CanvasLayer/Control/PanelContainer_bg/MarginContainer/GridContainer/MarginContainer5" unique_id=1892435929]
+custom_minimum_size = Vector2(150, 225)
+layout_mode = 2
+
+[node name="MarginContainer6" type="MarginContainer" parent="CanvasLayer/Control/PanelContainer_bg/MarginContainer/GridContainer" unique_id=1294967419]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="Control" type="Control" parent="CanvasLayer/Control/PanelContainer_bg/MarginContainer/GridContainer/MarginContainer6" unique_id=1116783848]
+custom_minimum_size = Vector2(150, 225)
+layout_mode = 2
+
+[node name="MarginContainer7" type="MarginContainer" parent="CanvasLayer/Control/PanelContainer_bg/MarginContainer/GridContainer" unique_id=646364255]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="Control" type="Control" parent="CanvasLayer/Control/PanelContainer_bg/MarginContainer/GridContainer/MarginContainer7" unique_id=505385444]
+custom_minimum_size = Vector2(150, 225)
+layout_mode = 2
+
+[node name="MarginContainer8" type="MarginContainer" parent="CanvasLayer/Control/PanelContainer_bg/MarginContainer/GridContainer" unique_id=1242351363]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="Control" type="Control" parent="CanvasLayer/Control/PanelContainer_bg/MarginContainer/GridContainer/MarginContainer8" unique_id=1786605873]
+custom_minimum_size = Vector2(150, 225)
+layout_mode = 2
+
+[node name="MarginContainer9" type="MarginContainer" parent="CanvasLayer/Control/PanelContainer_bg/MarginContainer/GridContainer" unique_id=1327145519]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="Control" type="Control" parent="CanvasLayer/Control/PanelContainer_bg/MarginContainer/GridContainer/MarginContainer9" unique_id=692962357]
+custom_minimum_size = Vector2(150, 225)
+layout_mode = 2
+
+[node name="CardsRoot" type="Control" parent="CanvasLayer/Control" unique_id=1934673987]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+theme = ExtResource("3_tcjrq")
+
+[node name="DiscardPileLocation" type="Control" parent="CanvasLayer/Control" unique_id=1787077870]
+anchors_preset = 0
+offset_left = 1657.0
+offset_top = 518.0
+offset_right = 1697.0
+offset_bottom = 558.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Control" unique_id=989690710]
+layout_mode = 0
+offset_left = 1681.0
+offset_top = 355.0
+offset_right = 1811.0
+offset_bottom = 442.0
+theme = ExtResource("5_tqxxy")
+
+[node name="StartButton" type="Button" parent="CanvasLayer/Control/VBoxContainer" unique_id=1561081237]
+custom_minimum_size = Vector2(140, 70)
+layout_mode = 2
+text = "START"
+
+[node name="HSeparator" type="HSeparator" parent="CanvasLayer/Control/VBoxContainer" unique_id=320910277]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Control/VBoxContainer" unique_id=35496021]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 3
+theme_override_constants/separation = 0
+
+[node name="Label" type="Label" parent="CanvasLayer/Control/VBoxContainer/VBoxContainer" unique_id=283837637]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "Difficulty"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Control/VBoxContainer/VBoxContainer" unique_id=2021020931]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="HSlider" type="HSlider" parent="CanvasLayer/Control/VBoxContainer/VBoxContainer/HBoxContainer" unique_id=1975269047]
+custom_minimum_size = Vector2(91.085, 24.015)
+layout_mode = 2
+size_flags_vertical = 4
+min_value = 1.0
+max_value = 4.0
+value = 1.0
+tick_count = 4
+ticks_on_borders = true
+ticks_position = 3
+
+[node name="Label" type="Label" parent="CanvasLayer/Control/VBoxContainer/VBoxContainer/HBoxContainer" unique_id=1662437763]
+layout_mode = 2
+text = "1"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Control" unique_id=102545727]
+layout_mode = 0
+offset_left = 101.0
+offset_top = 377.0
+offset_right = 141.0
+offset_bottom = 417.0
+theme = ExtResource("5_tqxxy")
+
+[node name="Label" type="Label" parent="CanvasLayer/Control/HBoxContainer" unique_id=314555411]
+layout_mode = 2
+text = "Moves left : 4994"
+
+[node name="ResultsBanner" type="TextureRect" parent="CanvasLayer/Control" unique_id=444929107]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -392.0
+offset_right = 390.0
+offset_bottom = 176.0
+grow_horizontal = 2
+pivot_offset_ratio = Vector2(0.5, 0)
+texture = ExtResource("6_5ay1a")
+expand_mode = 3
+
+[node name="Label" type="Label" parent="CanvasLayer/Control/ResultsBanner" unique_id=556967573]
+layout_mode = 0
+offset_left = 257.0
+offset_top = 68.0
+offset_right = 513.0
+offset_bottom = 140.0
+pivot_offset_ratio = Vector2(0.5, 0)
+theme = ExtResource("5_tqxxy")
+theme_override_colors/font_color = Color(0.09923176, 0.09923177, 0.09923177, 1)
+theme_override_font_sizes/font_size = 64
+text = "VICTORY"
+
+[node name="CardDefs" type="Node2D" parent="." unique_id=368863581]
+
+[node name="2_spades" type="Node2D" parent="CardDefs" unique_id=183683693]
+script = ExtResource("2_kk2rg")
+_id = "2_spades"
+_texture2D = ExtResource("3_b5spy")
+
+[node name="4_clubs" type="Node2D" parent="CardDefs" unique_id=1214791629]
+script = ExtResource("2_kk2rg")
+_id = "4_clubs"
+_texture2D = ExtResource("4_utbpp")
+
+[node name="7_hearts" type="Node2D" parent="CardDefs" unique_id=356686834]
+script = ExtResource("2_kk2rg")
+_id = "7_hearts"
+_texture2D = ExtResource("5_mw25s")
+
+[node name="2_clubs" type="Node2D" parent="CardDefs" unique_id=1163564706]
+script = ExtResource("2_kk2rg")
+_id = "2_clubs"
+_texture2D = ExtResource("6_tcjrq")
+
+[node name="9_diamonds" type="Node2D" parent="CardDefs" unique_id=1027758678]
+script = ExtResource("2_kk2rg")
+_id = "9_diamonds"
+_texture2D = ExtResource("7_rvs2r")
+
+[node name="target" type="Node2D" parent="CardDefs" unique_id=258552172]
+script = ExtResource("2_kk2rg")
+_id = "target"
+_texture2D = ExtResource("8_b5spy")
+
+[node name="Difficulty" type="Node" parent="." unique_id=879315879]
+script = ExtResource("12_rvs2r")
+
+[node name="Audio" type="Node" parent="." unique_id=1000241107]
+
+[node name="ClockPlayer" type="AudioStreamPlayer" parent="Audio" unique_id=1066142990]
+stream = ExtResource("16_liy57")
+autoplay = true
+
+[node name="Cardflip" type="AudioStreamPlayer" parent="Audio" unique_id=830070993]
+stream = ExtResource("17_mwyo0")
+volume_db = -15.933
+pitch_scale = 0.63
+
+[connection signal="OnGameLost" from="CanvasLayer/Control" to="." method="HandleGameFinishedLost"]
+[connection signal="OnGameWon" from="CanvasLayer/Control" to="." method="HandleGameFinishedWon"]
+[connection signal="pressed" from="CanvasLayer/Control/VBoxContainer/StartButton" to="." method="StartGame"]

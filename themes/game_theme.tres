@@ -1,0 +1,20 @@
+[gd_resource type="Theme" format=3 uid="uid://6qqdetk8k1fy"]
+
+[ext_resource type="Texture2D" uid="uid://by1df2gfqcgqr" path="res://sprites/frame-gothy_rotated.png" id="1_amlv4"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_amlv4"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_amlv4"]
+bg_color = Color(0.69411767, 0.59607846, 0.1882353, 0.5137255)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_i7eh4"]
+texture = ExtResource("1_amlv4")
+texture_margin_left = 150.0
+texture_margin_top = 80.0
+texture_margin_right = 150.0
+texture_margin_bottom = 80.0
+
+[resource]
+Button/styles/disabled = SubResource("StyleBoxEmpty_amlv4")
+Button/styles/hover = SubResource("StyleBoxFlat_amlv4")
+PanelContainer/styles/panel = SubResource("StyleBoxTexture_i7eh4")

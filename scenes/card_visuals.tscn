@@ -1,0 +1,47 @@
+[gd_scene format=3 uid="uid://dvthadblh6i8r"]
+
+[ext_resource type="Script" uid="uid://b4gih748fg3u0" path="res://code/CardVisuals.cs" id="1_cawq4"]
+[ext_resource type="Texture2D" uid="uid://c1gvqsnoc3q37" path="res://sprites/Playing Cards/card-back2.png" id="2_ffrsw"]
+[ext_resource type="Texture2D" uid="uid://ck6lxfcycnb3w" path="res://sprites/Playing Cards/card-clubs-3.png" id="3_2xuut"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ffrsw"]
+
+[node name="CardVisuals" type="Control" unique_id=493611507 node_paths=PackedStringArray("_cardBack", "_cardFront", "_container", "_button")]
+layout_mode = 3
+anchors_preset = 0
+offset_top = -1.0
+offset_bottom = -1.0
+pivot_offset_ratio = Vector2(0.5, 0.5)
+script = ExtResource("1_cawq4")
+_cardBack = NodePath("CenterContainer/CardBack")
+_cardFront = NodePath("CenterContainer/CardFront")
+_container = NodePath("CenterContainer")
+_button = NodePath("CenterContainer/Button")
+
+[node name="CenterContainer" type="CenterContainer" parent="." unique_id=821583907]
+custom_minimum_size = Vector2(150, 225)
+layout_mode = 1
+offset_right = 150.0
+offset_bottom = 225.0
+pivot_offset_ratio = Vector2(0.5, 0.5)
+
+[node name="CardBack" type="TextureRect" parent="CenterContainer" unique_id=1845477469]
+modulate = Color(0.6255971, 0.6255971, 0.6255971, 1)
+custom_minimum_size = Vector2(150, 225)
+layout_mode = 2
+texture = ExtResource("2_ffrsw")
+expand_mode = 1
+
+[node name="CardFront" type="TextureRect" parent="CenterContainer" unique_id=41546353]
+visible = false
+custom_minimum_size = Vector2(150, 225)
+layout_mode = 2
+texture = ExtResource("3_2xuut")
+expand_mode = 1
+
+[node name="Button" type="Button" parent="CenterContainer" unique_id=345184856]
+custom_minimum_size = Vector2(150, 225)
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxEmpty_ffrsw")
+
+[connection signal="pressed" from="CenterContainer/Button" to="." method="HandleCardClicked"]

@@ -1,0 +1,29 @@
+[gd_scene format=3 uid="uid://ci5v4ups3a7sm"]
+
+[ext_resource type="Script" uid="uid://ctasxvcauqhfv" path="res://code/CardTest.cs" id="1_qmupc"]
+[ext_resource type="PackedScene" uid="uid://dvthadblh6i8r" path="res://scenes/card_visuals.tscn" id="1_uo7st"]
+[ext_resource type="Texture2D" uid="uid://ccwuaiyv3hbbv" path="res://sprites/Playing Cards/card-hearts-2.png" id="2_nvmsr"]
+
+[node name="CardTest" type="Node" unique_id=627703295 node_paths=PackedStringArray("_testCard")]
+script = ExtResource("1_qmupc")
+_testCard = NodePath("CanvasLayer/Control/CardVisuals")
+_testMeh = ExtResource("2_nvmsr")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1486682057]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1983989050]
+
+[node name="Control" type="Control" parent="CanvasLayer" unique_id=1699093720]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 463.0
+offset_bottom = 531.0
+pivot_offset_ratio = Vector2(0.5, 0.5)
+
+[node name="CardVisuals" parent="CanvasLayer/Control" unique_id=493611507 instance=ExtResource("1_uo7st")]
+layout_mode = 0
+offset_left = 230.0
+offset_top = 134.0
+offset_right = 230.0
+offset_bottom = 134.0
+pivot_offset_ratio = Vector2(-0.035, 0)

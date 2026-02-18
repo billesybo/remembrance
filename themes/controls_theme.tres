@@ -1,0 +1,31 @@
+[gd_resource type="Theme" format=3 uid="uid://c2ibtscs2teuj"]
+
+[ext_resource type="FontFile" uid="uid://bnqc3nacag704" path="res://fonts/BoutiqueBitmap9x9_1.9.ttf" id="1_tea7j"]
+[ext_resource type="Texture2D" uid="uid://b7lqlj5prsemf" path="res://sprites/UI/Hover@4x.png" id="2_cl2ei"]
+[ext_resource type="Texture2D" uid="uid://rigs484d4ono" path="res://sprites/UI/Default@4x.png" id="3_4r7af"]
+[ext_resource type="Texture2D" uid="uid://1ofv4wrk5ot" path="res://sprites/Complete_UI_Essential_Pack_Free/01_Flat_Theme/Sprites/UI_Flat_Handle06a.png" id="6_cl2ei"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_6abfs"]
+texture = ExtResource("2_cl2ei")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_kwhvy"]
+texture = ExtResource("3_4r7af")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_hguu3"]
+texture = ExtResource("3_4r7af")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_bpa63"]
+texture = ExtResource("3_4r7af")
+
+[resource]
+Button/colors/font_color = Color(0.13333334, 0.13333334, 0.13333334, 1)
+Button/font_sizes/font_size = 24
+Button/fonts/font = ExtResource("1_tea7j")
+Button/styles/hover = SubResource("StyleBoxTexture_6abfs")
+Button/styles/hover_pressed = SubResource("StyleBoxTexture_kwhvy")
+Button/styles/normal = SubResource("StyleBoxTexture_hguu3")
+Button/styles/pressed = SubResource("StyleBoxTexture_bpa63")
+HSlider/icons/tick = ExtResource("6_cl2ei")
+Label/colors/font_color = Color(0.67754686, 0.67754686, 0.67754686, 1)
+Label/fonts/font = ExtResource("1_tea7j")
+VBoxContainer/constants/separation = 10

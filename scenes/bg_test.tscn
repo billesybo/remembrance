@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://bi2dldrwmkke4"]
+
+[ext_resource type="Texture2D" uid="uid://drlyxtvlwgo75" path="res://sprites/parallax-forest-back-trees.png" id="1_brmyu"]
+
+[node name="BgTest" type="Node" unique_id=1604014285]
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=576594979]
+light_mask = 0
+visibility_layer = 0
+anchor_mode = 0
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=778333760]
+z_index = -1000
+position = Vector2(1055.5, 586.5)
+scale = Vector2(11.533087, 12.318749)
+texture = ExtResource("1_brmyu")
+metadata/_edit_lock_ = true
